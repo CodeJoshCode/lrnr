@@ -6,9 +6,9 @@ I subscribe to the idea that the human brain has a finite amount of will power.
 Why waste your learning energy on thinking about when to revisit a topic or practice your skills? Or finding the relevant notes and picking some practice problems?
 This adds up, a lot. By the time I'm all set up to do something, I often am out of energy. Then I get discouraged because I didn't "do" anything "productive".
 
-No longer. I find that my best learning happens when I write notes on paper and do practice problems, I learn best. I find this to be a difficult system to manage. Multiple notebooks, difficulties balancing digital and paper information, etc. Because of that, I have trouble revisiting the information and I inevidentably lose the skills I grind so hard for because I don't have a system for offloading the management of my learning so I can just LEARN and REINFORCE.
+No longer. My best learning happens when I write notes on paper and do practice problems. I find this to be a difficult system to manage. Multiple notebooks, difficulties balancing digital and paper information, etc. Because of that, I have trouble revisiting the information and I inevidentably lose the skills I grind so hard for because I don't have a system for offloading the management of my learning so I can just LEARN and REINFORCE.
 
-Time efficiency and long term proficiency are the goals of any learning endeaver. These are the primary advantages of a spaced learning based approach. Another advantage is that by spending less time per session than my usual ad hoc approach, the learning process will have a greater variety, which helps curve boredom.
+Time efficiency and long term proficiency are the goals of any learning endeaver. These are the primary advantages of a spaced learning based approach. Another advantage is that by spending less time per session than my usual ad hoc approach, the learning process will have a greater variety and specificity, which helps curve boredom.
 
 Most online solutions fit only some of my needs. I decided to make my own so I could solve my own learning difficulties in a way that way intuitive to me. So here it is, plain and simple:
 
