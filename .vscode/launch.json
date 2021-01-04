@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LrnrApplication<lrnr>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.jsimmons.lrnr.LrnrApplication",
+            "projectName": "lrnr",
+            "args": ""
+        }
+    ]
+}
