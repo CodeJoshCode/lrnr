@@ -22,81 +22,9 @@ import javax.persistence.*;
 public class Notebook {
     private @Id @GeneratedValue Long id;
     private String notebookName;
-    @OneToMany(targetEntity = ReviewNote.class, mappedBy = "notebookName")
-    private List<ReviewNote> notesForNotebook;
+    //@OneToMany(targetEntity = ReviewNote.class, mappedBy = "notebookName")
+    //private List<ReviewNote> notesForNotebook;
 
     public Notebook() {
     }
-
-    public Notebook(Long id, String notebookName, List<ReviewNote> notesForNotebook) {
-        this.id = id;
-        this.notebookName = notebookName;
-        this.notesForNotebook = notesForNotebook;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNotebookName() {
-        return this.notebookName;
-    }
-
-    public void setNotebookName(String notebookName) {
-        this.notebookName = notebookName;
-    }
-
-    public List<ReviewNote> getNotesForNotebook() {
-        return this.notesForNotebook;
-    }
-
-    public void setNotesForNotebook(List<ReviewNote> notesForNotebook) {
-        this.notesForNotebook = notesForNotebook;
-    }
-
-    public Notebook id(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public Notebook notebookName(String notebookName) {
-        this.notebookName = notebookName;
-        return this;
-    }
-
-    public Notebook notesForNotebook(List<ReviewNote> notesForNotebook) {
-        this.notesForNotebook = notesForNotebook;
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Notebook)) {
-            return false;
-        }
-        Notebook notebook = (Notebook) o;
-        return Objects.equals(id, notebook.id) && Objects.equals(notebookName, notebook.notebookName) && Objects.equals(notesForNotebook, notebook.notesForNotebook);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, notebookName, notesForNotebook);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", notebookName='" + getNotebookName() + "'" +
-            ", notesForNotebook='" + getNotesForNotebook() + "'" +
-            "}";
-    }
-	
-
 }

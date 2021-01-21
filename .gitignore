@@ -28,3 +28,5 @@ hs_err_pid*
 #vscode
 .vscode/*01/003.
 
+#intellijIdea
+.idea/*
