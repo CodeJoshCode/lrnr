@@ -15,4 +15,3 @@ Most online solutions fit only some of my needs. I decided to make my own so I c
 The lrnr allows me to upload my notes and practice problems when I first learn a new skill. Then calendar events are created at intervals of 1 day, 3 days, 10 days, 30 days, and 60 days. Each event has a decreasing amount of time needed for studying over time. I.e. you may study for an hour the first time and only 20 minutes the last time. Each day, I check in and do my learning for the day, taking on something new each day as well. Another benfit is this systems provides natural feedback on how much new information is really feasible to learn each day, which can be extrapolated to weeks, months, etc, and eventually allow for better planning of future endeavers via a more informed estimation process.
 
 That's all for now. Let's learn!
-#TODO: Add .gitignore for vscode files
