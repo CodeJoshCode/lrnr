@@ -33,8 +33,7 @@ public class Notebook {
     public Notebook() {
     }
 
-    public Notebook(Long id, String notebookName) {
-        this.id = id;
+    public Notebook(String notebookName) {
         this.notebookName = notebookName;
     }
 
