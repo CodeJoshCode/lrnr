@@ -7,7 +7,7 @@ it can be practiced in a top limit of two hours per session or less. A notebook 
 ReviewItems that make up its view as well as a ReviewSchedule that determines
 when a notebook will be added to the daily review.
 */
-package com.jsimmons.lrnr;
+package com.jsimmons.lrnr.Entities;
 
 import javax.persistence.Entity;
 
@@ -19,12 +19,38 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "notebooks")
 public class Notebook {
-    private @Id @GeneratedValue Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String notebookName;
     //@OneToMany(targetEntity = ReviewNote.class, mappedBy = "notebookName")
     //private List<ReviewNote> notesForNotebook;
 
     public Notebook() {
+    }
+
+    public Notebook(Long id, String notebookName) {
+        this.id = id;
+        this.notebookName = notebookName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNotebookName() {
+        return notebookName;
+    }
+
+    public void setNotebookName(String notebookName) {
+        this.notebookName = notebookName;
     }
 }
