@@ -11,6 +11,8 @@ package com.jsimmons.lrnr.Entities;
 
 import javax.persistence.Entity;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -26,6 +28,10 @@ public class Notebook {
     private String notebookName;
     //@OneToMany(targetEntity = Page.class, mappedBy = "id")
     //private List<Page> pagesForNotebook;
+
+    @OneToMany(mappedBy = "notebook", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Page> pages;
 
     public Notebook() {
     }
