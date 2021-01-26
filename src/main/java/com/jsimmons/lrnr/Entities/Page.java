@@ -29,8 +29,9 @@ public class Page {
     public Page() {
     }
 
-    public Page(String pathToPage) {
+    public Page(String pathToPage, Notebook notebook) {
         this.pathToPage = pathToPage;
+        this.notebook = notebook;
     }
 
     public long getId() {
