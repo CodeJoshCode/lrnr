@@ -11,9 +11,6 @@ package com.jsimmons.lrnr.Entities;
 
 import javax.persistence.Entity;
 
-import java.util.List;
-import java.util.Objects;
-
 import javax.persistence.*;
 
 
@@ -27,8 +24,8 @@ public class Notebook {
 
     @Column
     private String notebookName;
-    //@OneToMany(targetEntity = ReviewNote.class, mappedBy = "notebookName")
-    //private List<ReviewNote> notesForNotebook;
+    //@OneToMany(targetEntity = Page.class, mappedBy = "id")
+    //private List<Page> pagesForNotebook;
 
     public Notebook() {
     }
