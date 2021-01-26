@@ -23,8 +23,7 @@ public class Page {
     public Page() {
     }
 
-    public Page(long id, String pathToPage) {
-        this.id = id;
+    public Page(String pathToPage) {
         this.pathToPage = pathToPage;
     }
 
