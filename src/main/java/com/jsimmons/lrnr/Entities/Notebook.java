@@ -55,4 +55,12 @@ public class Notebook {
     public void setNotebookName(String notebookName) {
         this.notebookName = notebookName;
     }
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
 }
