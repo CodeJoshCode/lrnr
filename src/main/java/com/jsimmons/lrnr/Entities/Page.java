@@ -22,6 +22,23 @@ public class Page {
     @Column
     private String pathToPage;
 
+    // README on FetchType being FetchType.LAZY vs FetchType.EAGER:
+    /*
+        When the parent entity (the "one" in one to many) is loaded we can use the fetch flag to indicate whether or not to load the child (many) type.
+        This is useful because it will be unreasonable to load all of the children (especially if there is a large amt) on every parent load.
+        lazy waits until something like getPages() is called from Notebook. Eager will load every child on each parent load.
+        Also Note default fetch types for jpa relationships:
+
+        * OneToMany ----> fetch = FetchType.LAZY
+        * ManyToMany ---> fetch = FetchType.LAZY
+
+        * ManyToOne ----> fetch = FetchType.EAGER
+        * OneToOne -----> fetch = FetchType.EAGER (Seems EAGER vs LAZY would be disregardable here but maybe loadtime still matters in some case? hard to say)
+
+        So these default fetch types appear to be optimized ahead of time but prob wouldnt hurt to know. 
+     */
+
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "notebook_id", nullable = false)
     private Notebook notebook;
@@ -58,6 +75,14 @@ public class Page {
     public Page pathToPage(String pathToPage) {
         setPathToPage(pathToPage);
         return this;
+    }
+
+    public Notebook getNotebook() {
+        return notebook;
+    }
+
+    public void setNotebook(Notebook notebook) {
+        this.notebook = notebook;
     }
 
     @Override
