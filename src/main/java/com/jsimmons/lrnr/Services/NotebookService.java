@@ -19,4 +19,8 @@ public class NotebookService {
     public void saveNotebook(Notebook n) {
         repository.save(n);
     }
+
+    public Notebook getNotebook(String name){
+        return repository.findByNotebookName(name);
+    }
 }

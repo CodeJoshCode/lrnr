@@ -5,17 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Notebooks</title>
+    <title>Notebook Requested</title>
 </head>
 <body>
-poop pee poop
-<form method="post">
-    <input type="text" name="notebook"></input>
-    <button type="submit">Submit</button>
-</form>
+Notebook:
+<p th:text="${'id of notebook: ' + id}"></p>
 
-<p>Search for notebook:</p>
-<form method="get">
+<form method="post">
     <input type="text" name="notebookName"></input>
     <button type="submit">Submit</button>
 </form>
