@@ -43,12 +43,30 @@ public class Page {
     @JoinColumn(name = "notebook_id", nullable = false)
     private Notebook notebook;
 
+    @Column
+    private String name;
+
     public Page() {
     }
 
-    public Page(String pathToPage, Notebook notebook) {
+    public Page(String pathToPage, String name, Notebook notebook) {
+        this.pathToPage = pathToPage;
+        this.name = name;
+        this.notebook = notebook;
+    }
+
+    public Page(String pathToPage, Notebook notebook){
         this.pathToPage = pathToPage;
         this.notebook = notebook;
+    }
+
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public long getId() {
