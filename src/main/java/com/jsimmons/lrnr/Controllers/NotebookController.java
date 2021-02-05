@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/")
 public class NotebookController {
@@ -20,25 +22,26 @@ public class NotebookController {
         return "GetNotebook";
     }
 
-    @GetMapping("notebooktest")
+    @GetMapping("findnotebookbyname")
     public String getNotebookTest() {
         return "FindNotebookByName";
     }
 
     // TODO: add something to protect us if notebook isn't there
-    @GetMapping("findnotebookbyname")
-    public String getFindNotebookByName(@RequestParam(name="notebookName") String notebookName, Model model){
+    @PostMapping("findnotebookbyname")
+    public String getFindNotebookByName(@RequestParam(name="notebookName", required = false) String notebookName, Model model){
         Notebook requestedNotebook = service.getNotebook(notebookName);
-        //model.addAttribute("id", requestedNotebook.getId());
+        model.addAttribute("id", requestedNotebook.getId());
+
         return "FindNotebookByName";
     }
 
     @PostMapping("notebook")
-    public String postNotebook(@RequestParam(name="notebook") String notebook, Model model) {
+    public String postNotebook(@RequestParam(name="notebook2") String notebook2, Model model) {
         //add new notebook to Model
-        model.addAttribute("notebook", notebook);
+        model.addAttribute("notebook2", notebook2);
         //add new notebook to Database
-        service.saveNotebook(new Notebook(notebook));
+        service.saveNotebook(new Notebook(notebook2));
         return "PostNotebook";
     }
 
