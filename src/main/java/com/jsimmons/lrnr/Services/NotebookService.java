@@ -16,8 +16,8 @@ public class NotebookService {
     public List<Notebook> getNotebooks() {
         return (List<Notebook>) repository.findAll();
     }
-    public void saveNotebook(Notebook n) {
-        repository.save(n);
+    public Notebook saveNotebook(Notebook n) {
+        return repository.save(n);
     }
 
     public Notebook getNotebook(String name){

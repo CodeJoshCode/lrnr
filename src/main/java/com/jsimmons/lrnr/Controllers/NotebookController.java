@@ -4,11 +4,9 @@ import com.jsimmons.lrnr.Entities.Notebook;
 import com.jsimmons.lrnr.Services.NotebookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
