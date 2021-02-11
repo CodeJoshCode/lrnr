@@ -9,6 +9,9 @@ when a notebook will be added to the daily review.
 */
 package com.jsimmons.lrnr.Entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 
 import java.util.List;
@@ -16,7 +19,8 @@ import java.util.List;
 import javax.persistence.*;
 
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "notebooks")
 public class Notebook {
@@ -38,29 +42,5 @@ public class Notebook {
 
     public Notebook(String notebookName) {
         this.notebookName = notebookName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNotebookName() {
-        return notebookName;
-    }
-
-    public void setNotebookName(String notebookName) {
-        this.notebookName = notebookName;
-    }
-
-    public List<Page> getPages() {
-        return pages;
-    }
-
-    public void setPages(List<Page> pages) {
-        this.pages = pages;
     }
 }

@@ -1,5 +1,8 @@
 package com.jsimmons.lrnr.Entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "pages")
 public class Page {
@@ -60,31 +65,7 @@ public class Page {
         this.notebook = notebook;
     }
 
-
-    public String getName(){
-        return this.name;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public long getId() {
-        return this.id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getPathToPage() {
-        return this.pathToPage;
-    }
-
-    public void setPathToPage(String pathToPage) {
-        this.pathToPage = pathToPage;
-    }
-
+    //whats up with these page methods are we even using them?
     public Page id(long id) {
         setId(id);
         return this;
@@ -93,14 +74,6 @@ public class Page {
     public Page pathToPage(String pathToPage) {
         setPathToPage(pathToPage);
         return this;
-    }
-
-    public Notebook getNotebook() {
-        return notebook;
-    }
-
-    public void setNotebook(Notebook notebook) {
-        this.notebook = notebook;
     }
 
     @Override
