@@ -1,7 +1,7 @@
-package com.jsimmons.lrnr.Controllers;
+package com.jsimmons.lrnr.controllers;
 
-import com.jsimmons.lrnr.Entities.Notebook;
-import com.jsimmons.lrnr.Services.NotebookService;
+import com.jsimmons.lrnr.entities.Notebook;
+import com.jsimmons.lrnr.services.NotebookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,15 @@ public class NotebookController {
         return "GetNotebook";
     }
 
+    @PostMapping("notebook")
+    public String postNotebook(@RequestParam(name="notebook2") String notebook2, Model model) {
+        //add new notebook to Model
+        model.addAttribute("notebook2", notebook2);
+        //add new notebook to Database
+        service.saveNotebook(new Notebook(notebook2));
+        return "PostNotebook";
+    }
+
     @GetMapping("findnotebookbyname")
     public String getNotebookTest() {
         return "FindNotebookByName";
@@ -34,14 +43,7 @@ public class NotebookController {
         return "FindNotebookByName";
     }
 
-    @PostMapping("notebook")
-    public String postNotebook(@RequestParam(name="notebook2") String notebook2, Model model) {
-        //add new notebook to Model
-        model.addAttribute("notebook2", notebook2);
-        //add new notebook to Database
-        service.saveNotebook(new Notebook(notebook2));
-        return "PostNotebook";
-    }
+
 
 
 

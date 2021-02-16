@@ -1,6 +1,6 @@
 package com.jsimmons.lrnr.repositories;
 
-import com.jsimmons.lrnr.Entities.Notebook;
+import com.jsimmons.lrnr.entities.Notebook;
 
 import org.springframework.data.repository.CrudRepository;
 

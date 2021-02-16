@@ -1,8 +1,8 @@
-package com.jsimmons.lrnr.Services;
+package com.jsimmons.lrnr.services;
 
 import java.util.List;
 
-import com.jsimmons.lrnr.Entities.Page;
+import com.jsimmons.lrnr.entities.Page;
 import com.jsimmons.lrnr.repositories.PageRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

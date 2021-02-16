@@ -1,7 +1,7 @@
-package com.jsimmons.lrnr.Controllers;
+package com.jsimmons.lrnr.controllers;
 
-import com.jsimmons.lrnr.Entities.Notebook;
-import com.jsimmons.lrnr.Services.NotebookService;
+import com.jsimmons.lrnr.entities.Notebook;
+import com.jsimmons.lrnr.services.NotebookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

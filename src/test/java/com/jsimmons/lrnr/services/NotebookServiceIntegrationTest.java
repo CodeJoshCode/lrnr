@@ -1,4 +1,4 @@
-package com.jsimmons.lrnr.Services;
+package com.jsimmons.lrnr.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +8,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.jsimmons.lrnr.Entities.Notebook;
+import com.jsimmons.lrnr.entities.Notebook;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

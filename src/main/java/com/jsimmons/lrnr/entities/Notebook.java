@@ -7,7 +7,7 @@ it can be practiced in a top limit of two hours per session or less. A notebook 
 ReviewItems that make up its view as well as a ReviewSchedule that determines
 when a notebook will be added to the daily review.
 */
-package com.jsimmons.lrnr.Entities;
+package com.jsimmons.lrnr.entities;
 
 import lombok.Getter;
 import lombok.Setter;

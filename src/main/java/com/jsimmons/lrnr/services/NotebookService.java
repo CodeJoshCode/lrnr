@@ -1,6 +1,6 @@
-package com.jsimmons.lrnr.Services;
+package com.jsimmons.lrnr.services;
 
-import com.jsimmons.lrnr.Entities.Notebook;
+import com.jsimmons.lrnr.entities.Notebook;
 import com.jsimmons.lrnr.repositories.NotebookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

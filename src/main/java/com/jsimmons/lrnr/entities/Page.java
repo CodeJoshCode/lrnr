@@ -1,4 +1,4 @@
-package com.jsimmons.lrnr.Entities;
+package com.jsimmons.lrnr.entities;
 
 import lombok.Getter;
 import lombok.Setter;
