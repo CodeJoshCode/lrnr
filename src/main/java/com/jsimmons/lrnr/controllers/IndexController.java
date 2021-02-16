@@ -18,7 +18,8 @@ public class IndexController {
     NotebookService notebookService;
 
     @GetMapping
-    public String getIndex() {
+    public String getIndex(Model model) {
+        model.addAttribute("notebooks", notebookService.getNotebooks());
         return "index";
     }
     @PostMapping
