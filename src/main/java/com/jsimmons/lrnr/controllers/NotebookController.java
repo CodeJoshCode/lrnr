@@ -37,7 +37,7 @@ public class NotebookController {
     // TODO: add something to protect us if notebook isn't there
     @PostMapping("findnotebookbyname")
     public String getFindNotebookByName(@RequestParam(name="notebookName", required = false) String notebookName, Model model){
-        Notebook requestedNotebook = service.getNotebook(notebookName);
+        Notebook requestedNotebook = service.findNotebookByName(notebookName);
         model.addAttribute("id", requestedNotebook.getId());
 
         return "FindNotebookByName";

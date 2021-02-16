@@ -16,6 +16,7 @@
     <p> Notebooks:</p>
     <th:block th:each="notebook : ${notebooks}">
         <p th:text="${notebook.notebookName}"> </p>
+        <a th:href="@{/usernotebook/__${notebook.notebookName}__}">go to notebook</a>
     </th:block>
 </body>
 </html>

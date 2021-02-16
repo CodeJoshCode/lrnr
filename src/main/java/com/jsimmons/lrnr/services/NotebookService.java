@@ -20,7 +20,7 @@ public class NotebookService {
         return repository.save(n);
     }
 
-    public Notebook getNotebook(String name){
+    public Notebook findNotebookByName(String name){
         return repository.findByNotebookName(name);
     }
 }
