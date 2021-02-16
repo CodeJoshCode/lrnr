@@ -10,6 +10,13 @@
 </head>
 <body>
     <p th:text="${'Notebook: ' + user_notebook.notebookName}"></p>
-    <p>we should eventually get dynamic user notebooks at this page for each individual notebook</p>
+    <h3>Pages:</h3>
+    <span th:each="page : ${user_notebook.pages}" th:text="${page.name} "/>
+    <br>
+    <p>Add a page </p>
+    <form method="post">
+        <input type="text" name="page_name"></input>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

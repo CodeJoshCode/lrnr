@@ -24,8 +24,8 @@ public class Page {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String pathToPage;
+    //@Column
+    //private String pathToPage;
 
     // README on FetchType being FetchType.LAZY vs FetchType.EAGER:
     /*
@@ -51,53 +51,31 @@ public class Page {
     @Column
     private String name;
 
+    @Column
+    private String pathToPage;
+
     public Page() {
-    }
-
-    public Page(String pathToPage, String name, Notebook notebook) {
-        this.pathToPage = pathToPage;
-        this.name = name;
-        this.notebook = notebook;
-    }
-
-    public Page(String pathToPage, Notebook notebook){
-        this.pathToPage = pathToPage;
-        this.notebook = notebook;
-    }
-
-    //whats up with these page methods are we even using them?
-    public Page id(long id) {
-        setId(id);
-        return this;
-    }
-
-    public Page pathToPage(String pathToPage) {
-        setPathToPage(pathToPage);
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Page)) {
-            return false;
-        }
-        Page page = (Page) o;
-        return id == page.id && Objects.equals(pathToPage, page.pathToPage);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, pathToPage);
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", pathToPage='" + getPathToPage() + "'" +
-            "}";
+        return "Page{" +
+                "id=" + id +
+                ", notebook=" + notebook +
+                ", name='" + name + '\'' +
+                '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Page page = (Page) o;
+        return Objects.equals(id, page.id) && Objects.equals(notebook, page.notebook) && Objects.equals(name, page.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, notebook, name);
+    }
 }

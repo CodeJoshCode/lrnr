@@ -3,16 +3,22 @@ package com.jsimmons.lrnr.controllers;
 import com.jsimmons.lrnr.entities.Notebook;
 import com.jsimmons.lrnr.entities.Page;
 import com.jsimmons.lrnr.services.NotebookService;
+import com.jsimmons.lrnr.services.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @Controller
 public class homeController {
 
     @Autowired
     NotebookService notebookService;
+
+    @Autowired
+    PageService pageService;
 
     //main page
 
@@ -44,7 +50,9 @@ public class homeController {
         Page new_page = new Page();
         new_page.setName(pageName);
         new_page.setNotebook(notebook);
-        notebook.getPages().add(new Page());
+        ArrayList<Page> pageList = new ArrayList<Page>();
+        pageList.add(new_page);
+        notebook.setPages(pageList);
         notebookService.saveNotebook(notebook);
         model.addAttribute("user_notebook", notebook);
         return "user_notebook";
