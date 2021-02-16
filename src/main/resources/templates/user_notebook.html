@@ -11,7 +11,10 @@
 <body>
     <p th:text="${'Notebook: ' + user_notebook.notebookName}"></p>
     <h3>Pages:</h3>
-    <span th:each="page : ${user_notebook.pages}" th:text="${page.name} "/>
+
+    <th:block th:each="page : ${user_notebook.pages}">
+    <p th:text="${page.name}"> </p>
+    </th:block>
     <br>
     <p>Add a page </p>
     <form method="post">

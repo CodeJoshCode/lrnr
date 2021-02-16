@@ -51,6 +51,7 @@ public class homeController {
         new_page.setName(pageName);
         new_page.setNotebook(notebook);
         ArrayList<Page> pageList = new ArrayList<Page>();
+        pageList.addAll(notebook.getPages());
         pageList.add(new_page);
         notebook.setPages(pageList);
         notebookService.saveNotebook(notebook);
