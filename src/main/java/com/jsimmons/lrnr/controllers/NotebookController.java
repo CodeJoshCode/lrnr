@@ -28,23 +28,4 @@ public class NotebookController {
         service.saveNotebook(new Notebook(notebook2));
         return "PostNotebook";
     }
-
-    @GetMapping("findnotebookbyname")
-    public String getNotebookTest() {
-        return "FindNotebookByName";
-    }
-
-    // TODO: add something to protect us if notebook isn't there
-    @PostMapping("findnotebookbyname")
-    public String getFindNotebookByName(@RequestParam(name="notebookName", required = false) String notebookName, Model model){
-        Notebook requestedNotebook = service.findNotebookByName(notebookName);
-        model.addAttribute("id", requestedNotebook.getId());
-
-        return "FindNotebookByName";
-    }
-
-
-
-
-
 }
