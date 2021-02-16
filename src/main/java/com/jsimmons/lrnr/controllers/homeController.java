@@ -32,7 +32,8 @@ public class homeController {
 
     @GetMapping("/usernotebook/{notebook_identifier}")
     public String getUserNotebook(@PathVariable(value = "notebook_identifier") String notebookIdentifier, Model model) throws Exception {
-        model.addAttribute("notebook_identifier", notebookIdentifier);
+        Notebook notebook = notebookService.findNotebookByName(notebookIdentifier);
+        model.addAttribute("user_notebook", notebook);
         return "user_notebook";
     }
 }
