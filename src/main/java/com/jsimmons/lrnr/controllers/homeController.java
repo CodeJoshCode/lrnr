@@ -8,30 +8,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class IndexController {
+public class homeController {
 
     @Autowired
     NotebookService notebookService;
 
     //main page
 
-    @GetMapping("/")
-    public String getIndex(Model model, @PathVariable(value = "notebookId", required = false) String notebookId) {
+    @GetMapping("/home")
+    public String getHome(Model model, @PathVariable(value = "notebookId", required = false) String notebookId) {
         model.addAttribute("notebooks", notebookService.getNotebooks());
-        return "index";
+        return "home";
     }
-    @PostMapping("/")
-    public String postIndex(@RequestParam(name="notebook") String notebookPath, Model model) {
+    @PostMapping("/home")
+    public String postHome(@RequestParam(name="notebook") String notebookPath, Model model) {
         notebookService.saveNotebook(new Notebook(notebookPath));
         model.addAttribute("notebook", notebookPath);
         model.addAttribute("notebooks", notebookService.getNotebooks());
-        return "index";
+        return "home";
     }
 
     // pages for individual notebooks
 
-    @GetMapping("/usernotebook/{notebookidentifier}")
-    public String getUserNotebook(@PathVariable(value = "notebookidentifier") String notebookIdentifier, Model model) throws Exception {
+    @GetMapping("/usernotebook/{notebook_identifier}")
+    public String getUserNotebook(@PathVariable(value = "notebook_identifier") String notebookIdentifier, Model model) throws Exception {
+        model.addAttribute("notebook_identifier", notebookIdentifier);
         return "user_notebook";
     }
 }
