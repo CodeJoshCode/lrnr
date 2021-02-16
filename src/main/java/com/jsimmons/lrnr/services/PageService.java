@@ -19,4 +19,7 @@ public class PageService {
     public void savePage(Page p) {
         repository.save(p);
     }
+    public Page findById(Long id) {
+        return repository.findById(id).get();
+    }
 }

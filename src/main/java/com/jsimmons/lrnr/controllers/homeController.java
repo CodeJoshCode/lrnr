@@ -38,15 +38,15 @@ public class homeController {
     // pages for individual notebooks
 
     @GetMapping("/user_notebook/{notebook_identifier}")
-    public String getUserNotebook(@PathVariable(value = "notebook_identifier") String notebookIdentifier, Model model) throws Exception {
-        Notebook notebook = notebookService.findNotebookByName(notebookIdentifier);
+    public String getUserNotebook(@PathVariable(value = "notebook_identifier") Long notebookIdentifier, Model model) throws Exception {
+        Notebook notebook = notebookService.findById(notebookIdentifier);
         model.addAttribute("user_notebook", notebook);
         return "user_notebook";
     }
 
     @PostMapping("/user_notebook/{notebook_identifier}")
-    public String postUserNotebook(@PathVariable(value = "notebook_identifier") String notebookIdentifier,@RequestParam(name = "page_name") String pageName, Model model) throws Exception{
-        Notebook notebook = notebookService.findNotebookByName(notebookIdentifier);
+    public String postUserNotebook(@PathVariable(value = "notebook_identifier") Long notebookIdentifier,@RequestParam(name = "page_name") String pageName, Model model) throws Exception{
+        Notebook notebook = notebookService.findById(notebookIdentifier);
         Page new_page = new Page();
         new_page.setName(pageName);
         new_page.setNotebook(notebook);
@@ -58,4 +58,12 @@ public class homeController {
         model.addAttribute("user_notebook", notebook);
         return "user_notebook";
     }
+
+    @GetMapping("/user_page/{page_identifier}")
+    public String getUserPage(@PathVariable(value = "page_identifier") Long pageIdentifier, Model model ) {
+        Page page =  pageService.findById(pageIdentifier);
+        model.addAttribute("user_page", page);
+        return "user_page";
+    }
+
 }

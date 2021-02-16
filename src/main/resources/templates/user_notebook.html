@@ -13,7 +13,8 @@
     <h3>Pages:</h3>
 
     <th:block th:each="page : ${user_notebook.pages}">
-    <p th:text="${page.name}"> </p>
+        <p th:text="${page.name}"> </p>
+        <a th:href="@{/user_page/__${page.id}__}">go to page</a>
     </th:block>
     <br>
     <p>Add a page </p>

@@ -23,4 +23,8 @@ public class NotebookService {
     public Notebook findNotebookByName(String name){
         return repository.findByNotebookName(name);
     }
+
+    public Notebook findById(Long id) {
+        return repository.findById(id).get();
+    }
 }
