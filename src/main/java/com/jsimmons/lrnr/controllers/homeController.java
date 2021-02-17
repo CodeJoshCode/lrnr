@@ -22,15 +22,22 @@ public class homeController {
 
     //main page
 
+    //TODO : Tried out @ModelAttribute annotation on /postHome below, will explain when we go over code again.
+    //
     @GetMapping("/home")
     public String getHome(Model model, @PathVariable(value = "notebookId", required = false) String notebookId) {
         model.addAttribute("notebooks", notebookService.getNotebooks());
         return "home";
     }
     @PostMapping("/home")
-    public String postHome(@RequestParam(name="notebook") String notebookPath, Model model) {
-        notebookService.saveNotebook(new Notebook(notebookPath));
-        model.addAttribute("notebook", notebookPath);
+    public String postHome(
+//            @RequestParam(name="notebook") String notebookPath,
+            @ModelAttribute(name = "notebook") Notebook notebook,
+            Model model) {
+        notebookService.saveNotebook(notebook);
+
+//        notebookService.saveNotebook(new Notebook(notebookPath));
+//        model.addAttribute("notebook", notebookPath);
         model.addAttribute("notebooks", notebookService.getNotebooks());
         return "home";
     }
