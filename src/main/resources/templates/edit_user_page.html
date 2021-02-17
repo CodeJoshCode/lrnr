@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit page</title>
+</head>
+<body>
+<p th:text="${'Page: ' + user_page.name}"></p>
+
+<p> page contents: </p>
+<p th:text="${user_page.textContents}"></p>
+<br>
+<p>edit page below:</p>
+<form method="post">
+    <input type="hidden" name="id" th:value="${user_page.id}" />
+    <label for="page_name">page name:</label>
+    <input th:value="${user_page.name}" id="page_name" type="text" name="page_name">
+    <br>
+    <label for="page_contents">page contents:</label>
+    <input th:value="${user_page.textContents}" id="page_contents" type="text" name="page_text_content">
+    <button type="submit">submit</button>
+</form>
+
+</body>
+</html>
