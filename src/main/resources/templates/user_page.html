@@ -8,8 +8,20 @@
     <title>User Page</title>
 </head>
 <body>
-<p> should dynamically display user pages </p>
-
+<p> Page name: </p>
 <p th:text="${user_page.name}"></p>
+<p> Page contents: </p>
+<p th:text="${user_page.textContents}"></p>
+<br>
+<p>Edit page below:</p>
+<form method="post">
+    <input type="hidden" name="id" th:value="${user_page.id}" />
+    <label for="page_name">Page name:</label>
+    <input th:value="${user_page.name}" id="page_name" type="text" name="page_name">
+    <br>
+    <label for="page_contents">Page contents:</label>
+    <input th:value="${user_page.textContents}" id="page_contents" type="text" name="page_text_content">
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>

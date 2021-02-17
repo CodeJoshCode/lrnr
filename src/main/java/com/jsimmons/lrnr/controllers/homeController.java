@@ -66,4 +66,19 @@ public class homeController {
         return "user_page";
     }
 
+    // TODO: change parameters to a map
+    @PostMapping("/user_page/{page_identifier}")
+    public String postUserPage(@PathVariable(value = "page_identifier") Long pageIdentifier,
+                               @RequestParam(name = "id") Long page_id,
+                               @RequestParam(name = "page_name") String page_name,
+                               @RequestParam(name = "page_text_content") String page_contents,
+                               Model model){
+        Page page =  pageService.findById(pageIdentifier);
+        page.setTextContents(page_contents);
+        pageService.savePage(page);
+        model.addAttribute("user_page", page);
+        return "user_page";
+    }
+
+
 }

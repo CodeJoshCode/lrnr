@@ -52,7 +52,7 @@ public class Page {
     private String name;
 
     @Column
-    private String pathToPage;
+    private String textContents;
 
     public Page() {
     }
