@@ -51,7 +51,7 @@ public class Page {
     @Column
     private String name;
 
-    @Column
+    @Column(length = 8000)
     private String textContents;
 
     public Page() {

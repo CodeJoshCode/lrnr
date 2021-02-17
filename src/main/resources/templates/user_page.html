@@ -18,7 +18,7 @@
 <p>add notes below</p>
 
 <form method="post">
-    <input th:value="${user_page.textContents}" id="page_contents" type="text" name="page_text_content">
+    <input th:value="${user_page.textContents}" id="page_contents" type="text" name="page_text_content" maxlength="8000">
     <button type="submit">Submit</button>
 </form>
 
