@@ -14,6 +14,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.*;
@@ -32,6 +33,12 @@ public class Notebook {
     private String notebookName;
     //@OneToMany(targetEntity = Page.class, mappedBy = "id")
     //private List<Page> pagesForNotebook;
+
+    /*
+    possible if needed
+    @Column
+    private LocalDateTime  time;
+     */
 
     @OneToMany(mappedBy = "notebook", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)

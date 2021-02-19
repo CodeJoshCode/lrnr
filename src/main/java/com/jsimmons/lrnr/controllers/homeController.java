@@ -25,7 +25,7 @@ public class homeController {
     //TODO : Tried out @ModelAttribute annotation on /postHome below, will explain when we go over code again.
     //
     @GetMapping("/home")
-    public String getHome(Model model, @PathVariable(value = "notebookId", required = false) String notebookId) {
+    public String getHome(@PathVariable(value = "notebookId", required = false) String notebookId, Model model) {
         model.addAttribute("notebooks", notebookService.getNotebooks());
         return "home";
     }
@@ -52,7 +52,9 @@ public class homeController {
     }
 
     @PostMapping("/user_notebook/{notebook_identifier}")
-    public String postUserNotebook(@PathVariable(value = "notebook_identifier") Long notebookIdentifier,@RequestParam(name = "page_name") String pageName, Model model) throws Exception{
+    public String postUserNotebook(@PathVariable(value = "notebook_identifier") Long notebookIdentifier,
+                                   @RequestParam(name = "page_name") String pageName,
+                                   Model model) throws Exception{
         Notebook notebook = notebookService.findById(notebookIdentifier);
         //TODO : this looks like it should be abstracted to a constructor below
         Page new_page = new Page();
@@ -130,5 +132,6 @@ public class homeController {
         model.addAttribute("user_page", page);
         return "user_page";
     }
+
 
 }
