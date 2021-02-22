@@ -97,7 +97,6 @@ public class homeController {
                                @RequestParam(name = "page_text_content") String page_contents,
                                Model model) {
         Page page = pageService.findById(pageIdentifier);
-        System.out.println(page);
         page.setTextContents(page_contents);
         pageService.savePage(page);
         model.addAttribute("user_page", page);
