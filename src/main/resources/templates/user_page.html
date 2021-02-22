@@ -8,6 +8,8 @@
     <title>User Page</title>
 </head>
 <body>
+
+    <a th:href = "@{/home}">Go To Home</a>
     <p th:text="${'Page name: ' + user_page.name}"></p>
     <br>
     <p>Edit page below:</p>
@@ -22,4 +24,5 @@
     </form>
 
     <p th:text="${'Page Contents: ' + user_page.textContents}"></p>
+</body>
 </html>
