@@ -8,18 +8,18 @@
     <title>User Page</title>
 </head>
 <body>
-<p th:text="${'Page name: ' + user_page.name}"></p>
-<p th:text="${'Page Contents: ' + user_page.textContents}"></p>
-<br>
-<p>Edit page below:</p>
-<a th:href="@{/user_page/edit/__${user_page.id}__}">Edit This Page</a>
-<br/>
+    <p th:text="${'Page name: ' + user_page.name}"></p>
+    <br>
+    <p>Edit page below:</p>
+    <a th:href="@{/user_page/edit/__${user_page.id}__}">Edit This Page</a>
+    <br/>
 
-<p>add notes below</p>
+    <p>add notes below</p>
 
-<form method="post">
-    <input th:value="${user_page.textContents}" id="page_contents" type="text" name="page_text_content" maxlength="8000">
-    <button type="submit">Submit</button>
-</form>
+    <form method="post">
+        <input th:value="${user_page.textContents}" id="page_contents" type="text" name="page_text_content" maxlength="8000">
+        <button type="submit">Submit</button>
+    </form>
 
+    <p th:text="${'Page Contents: ' + user_page.textContents}"></p>
 </html>

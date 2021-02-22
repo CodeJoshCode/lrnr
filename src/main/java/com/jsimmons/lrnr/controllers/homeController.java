@@ -101,7 +101,6 @@ public class homeController {
         page.setTextContents(page_contents);
         pageService.savePage(page);
         model.addAttribute("user_page", page);
-        System.out.println(page);
         return "user_page";
     }
 
