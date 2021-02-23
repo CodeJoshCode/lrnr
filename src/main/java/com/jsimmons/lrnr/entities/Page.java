@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +24,9 @@ public class Page {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    UUID uuid = UUID.randomUUID();
 
     //@Column
     //private String pathToPage;
@@ -44,6 +48,7 @@ public class Page {
      */
 
 
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "notebook_id", nullable = false)
     private Notebook notebook;
@@ -54,7 +59,18 @@ public class Page {
     @Column(length = 8000)
     private String textContents;
 
+    /* Constructors
+        textContents set to empty string bc most recent textContents is displayed in input form on UI side
+        i.e. avoids displaying null in input form box.
+     */
     public Page() {
+        textContents = "";
+    }
+
+    public Page(String name, Notebook notebook) {
+        this.name = name;
+        this.notebook = notebook;
+        this.textContents = "";
     }
 
     @Override

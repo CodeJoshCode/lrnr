@@ -13,7 +13,7 @@
     <p th:text="${'Page name: ' + user_page.name}"></p>
     <br>
     <p>Edit page below:</p>
-    <a th:href="@{/user_page/edit/__${user_page.id}__}">Edit This Page</a>
+    <a th:href="@{/__${user_page.notebook.uuid}__/edit/__${user_page.uuid}__}">Edit This Page</a>
     <br/>
 
     <p>add notes below</p>

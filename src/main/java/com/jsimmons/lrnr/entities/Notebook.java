@@ -16,10 +16,11 @@ import javax.persistence.Entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.*;
 
-
+//todo : should id types be final ?
 @Getter
 @Setter
 @Entity
@@ -28,6 +29,9 @@ public class Notebook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    UUID uuid = java.util.UUID.randomUUID();
 
     @Column
     private String notebookName;
@@ -49,5 +53,9 @@ public class Notebook {
 
     public Notebook(String notebookName) {
         this.notebookName = notebookName;
+    }
+
+    public void addPage(Page p) {
+        pages.add(p);
     }
 }

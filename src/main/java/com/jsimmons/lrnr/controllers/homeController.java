@@ -9,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.UUID;
+
 
 @Controller
 public class homeController {
@@ -23,7 +24,6 @@ public class homeController {
     //main page
 
     //TODO : Tried out @ModelAttribute annotation on /postHome below, will explain when we go over code again.
-    //
     @GetMapping("/home")
     public String getHome(@PathVariable(value = "notebookId", required = false) String notebookId, Model model) {
         model.addAttribute("notebooks", notebookService.getNotebooks());
@@ -45,58 +45,40 @@ public class homeController {
     // pages for individual notebooks
 
     @GetMapping("/user_notebook/{notebook_identifier}")
-    public String getUserNotebook(@PathVariable(value = "notebook_identifier") Long notebookIdentifier, Model model) throws Exception {
-        Notebook notebook = notebookService.findById(notebookIdentifier);
+    public String getUserNotebook(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier, Model model) throws Exception {
+        Notebook notebook = notebookService.findByUuid(notebookIdentifier);
         model.addAttribute("user_notebook", notebook);
         return "user_notebook";
     }
 
+    //TODO : consider not allowing multiple notebooks w/ same name below?
     @PostMapping("/user_notebook/{notebook_identifier}")
-    public String postUserNotebook(@PathVariable(value = "notebook_identifier") Long notebookIdentifier,
+    public String postUserNotebook(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
                                    @RequestParam(name = "page_name") String pageName,
-                                   Model model) throws Exception{
-        Notebook notebook = notebookService.findById(notebookIdentifier);
-        //TODO : this looks like it should be abstracted to a constructor below
-        Page new_page = new Page();
-        new_page.setName(pageName);
-        new_page.setNotebook(notebook);
-        new_page.setTextContents("");
-        ArrayList<Page> pageList = new ArrayList<Page>();
-        pageList.addAll(notebook.getPages());
-        pageList.add(new_page);
-        notebook.setPages(pageList);
+                                   Model model) {
+        Notebook notebook = notebookService.findByUuid(notebookIdentifier);
+        Page new_page = new Page(pageName, notebook);
+        notebook.addPage(new_page);
         notebookService.saveNotebook(notebook);
         model.addAttribute("user_notebook", notebook);
         return "user_notebook";
     }
 
-    @GetMapping("/user_page/{page_identifier}")
-    public String getUserPage(@PathVariable(value = "page_identifier") Long pageIdentifier, Model model ) {
-        Page page =  pageService.findById(pageIdentifier);
+    @GetMapping("/{notebook_identifier}/{page_identifier}")
+    public String getUserPage(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
+                              @PathVariable(value = "page_identifier") UUID pageIdentifier,
+                              Model model ) {
+        Page page =  pageService.findByUuid(pageIdentifier);
         model.addAttribute("user_page", page);
-
         return "user_page";
     }
 
-//    // TODO: change parameters to a map
-//    @PostMapping("/user_page/{page_identifier}")
-//    public String postUserPage(@PathVariable(value = "page_identifier") Long pageIdentifier,
-//                               @RequestParam(name = "id") Long page_id,
-//                               @RequestParam(name = "page_name") String page_name,
-//                               @RequestParam(name = "page_text_content") String page_contents,
-//                               Model model){
-//        Page page =  pageService.findById(pageIdentifier);
-//        page.setTextContents(page_contents);
-//        pageService.savePage(page);
-//        model.addAttribute("user_page", page);
-//        return "user_page";
-//    }
-    @PostMapping("/user_page/{page_identifier}")
-    public String postUserPage(@PathVariable(value = "page_identifier") Long pageIdentifier,
-                               //@RequestParam(name = "page_name") String pageName,
+    @PostMapping("/{notebook_identifier}/{page_identifier}")
+    public String postUserPage(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
+                               @PathVariable(value = "page_identifier") UUID pageIdentifier,
                                @RequestParam(name = "page_text_content") String page_contents,
                                Model model) {
-        Page page = pageService.findById(pageIdentifier);
+        Page page = pageService.findByUuid(pageIdentifier);
         page.setTextContents(page_contents);
         pageService.savePage(page);
         model.addAttribute("user_page", page);
@@ -105,21 +87,24 @@ public class homeController {
 
     // edit pages
 
-    @GetMapping("/user_page/edit/{page_identifier}")
-    public String getUserPageEdit(@PathVariable(value = "page_identifier") Long pageIdentifier, Model model) {
-        Page page = pageService.findById(pageIdentifier);
+    @GetMapping("/{notebook_identifier}/edit/{page_identifier}")
+    public String getUserPageEdit(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
+                                  @PathVariable(value = "page_identifier") UUID pageIdentifier,
+                                  Model model) {
+        Page page = pageService.findByUuid(pageIdentifier);
         model.addAttribute("user_page", page);
 
         return "edit_user_page";
     }
 
-    @PostMapping("/user_page/edit/{page_identifier}")
-    public String postUserPageEdit(@PathVariable(value = "page_identifier") Long pageIdentifier,
+    @PostMapping("/{notebook_identifier}/edit/{page_identifier}")
+    public String postUserPageEdit(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
+                                   @PathVariable(value = "page_identifier") UUID pageIdentifier,
                                    @RequestParam(name = "page_name", required = false) String pageName,
                                    @RequestParam(name = "page_text_content", required = false) String pageContents,
                                    Model model) {
         //TODO : pretty sure theres specific spring validation for null checking these requestparams
-        Page page = pageService.findById(pageIdentifier);
+        Page page = pageService.findByUuid(pageIdentifier);
         if (pageName != null) {
             page.setName(pageName);
         }

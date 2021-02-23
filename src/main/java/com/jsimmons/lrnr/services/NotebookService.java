@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class NotebookService {
@@ -26,5 +27,8 @@ public class NotebookService {
 
     public Notebook findById(Long id) {
         return repository.findById(id).get();
+    }
+    public Notebook findByUuid(UUID uuid) {
+        return repository.findByUuid (uuid);
     }
 }
