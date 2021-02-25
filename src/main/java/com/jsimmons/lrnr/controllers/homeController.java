@@ -4,6 +4,7 @@ import com.jsimmons.lrnr.entities.Notebook;
 import com.jsimmons.lrnr.entities.Page;
 import com.jsimmons.lrnr.services.NotebookService;
 import com.jsimmons.lrnr.services.PageService;
+import com.sun.istack.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 
@@ -78,13 +80,14 @@ public class homeController {
         return "user_page";
     }
 
+
     @PostMapping("/{notebook_identifier}/{page_identifier}")
     public String postUserPage(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
                                @PathVariable(value = "page_identifier") UUID pageIdentifier,
                                @RequestParam(name = "page_text_content") String page_contents,
                                Model model) {
         Page page = pageService.findByUuid(pageIdentifier);
-        page.setTextContents(page_contents);
+        page.setTextContents(page.getTextContents() + page_contents);
         pageService.savePage(page);
         model.addAttribute("user_page", page);
         return "user_page";

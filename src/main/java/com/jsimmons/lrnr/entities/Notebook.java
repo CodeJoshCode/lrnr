@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 //todo : should id types be final ?
 @Getter
@@ -33,6 +34,8 @@ public class Notebook {
     @Column
     UUID uuid = java.util.UUID.randomUUID();
 
+    //TODO : handle error thrown from @NotBlank on entity creation from user. same for page
+    @NotBlank
     @Column
     private String notebookName;
     //@OneToMany(targetEntity = Page.class, mappedBy = "id")

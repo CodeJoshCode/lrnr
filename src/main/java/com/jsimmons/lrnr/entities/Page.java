@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -53,6 +54,7 @@ public class Page {
     @JoinColumn(name = "notebook_id", nullable = false)
     private Notebook notebook;
 
+    @NotBlank
     @Column
     private String name;
 

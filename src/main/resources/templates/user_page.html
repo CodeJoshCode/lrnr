@@ -19,11 +19,12 @@
 
     <p>add notes below</p>
 
-    <form method="post">
-        <input th:value="${user_page.textContents}" id="page_contents" type="text" name="page_text_content" maxlength="8000">
+    <form method="post" >
+        <textarea th:value="${user_page.textContents}" id="page_contents" type = "text" name="page_text_content" maxlength="8000">Enter text here...</textarea>
         <button type="submit">Submit</button>
+
     </form>
 
-    <p th:text="${'Page Contents: ' + user_page.textContents}"></p>
+    <p style="white-space: pre-line" th:text="${'Page Contents: ' + user_page.textContents}"></p>
 </body>
 </html>
