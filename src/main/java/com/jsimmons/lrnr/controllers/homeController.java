@@ -4,6 +4,8 @@ import com.jsimmons.lrnr.entities.Notebook;
 import com.jsimmons.lrnr.entities.Page;
 import com.jsimmons.lrnr.services.NotebookService;
 import com.jsimmons.lrnr.services.PageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +23,14 @@ public class homeController {
     @Autowired
     PageService pageService;
 
+    Logger logger = LoggerFactory.getLogger(homeController.class);
+
     //main page
 
     //TODO : Tried out @ModelAttribute annotation on /postHome below, will explain when we go over code again.
     @GetMapping("/home")
     public String getHome(@PathVariable(value = "notebookId", required = false) String notebookId, Model model) {
+        logger.info("Home method accessed");
         model.addAttribute("notebooks", notebookService.getNotebooks());
         return "home";
     }
