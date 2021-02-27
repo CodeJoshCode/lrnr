@@ -3,6 +3,7 @@ package com.jsimmons.lrnr.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -77,6 +78,21 @@ public class Page {
         this.name = name;
         this.notebook = notebook;
         this.textContents = "";
+    }
+
+    public Boolean hasNext() {
+        List<Page> pages = notebook.getPages();
+        return pages.size() > (pages.indexOf(this) + 1);
+    }
+
+    public Page getNext() {
+        if (this.hasNext()) {
+            System.out.println("fuckfuckfuck");
+            List<Page> pages = notebook.getPages();
+            return notebook.getPages().get((pages.indexOf(this) + 1));
+        }
+        System.out.println("shitshithsit");
+        return null;
     }
 
     @Override

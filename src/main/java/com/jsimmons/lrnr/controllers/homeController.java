@@ -83,6 +83,11 @@ public class homeController {
                               Model model ) {
         Page page =  pageService.findByUuid(pageIdentifier);
         model.addAttribute("user_page", page);
+        model.addAttribute("user_page_hasnext", page.hasNext());
+
+        if (page.hasNext()) {
+            model.addAttribute("user_page_next", page.getNext());
+        }
         return "user_page";
     }
 
@@ -99,6 +104,8 @@ public class homeController {
         pageService.savePage(page);
         logger.info("page textContents should have just saved to db");
         model.addAttribute("user_page", page);
+        logger.info(page.hasNext().toString());
+
         return "user_page";
     }
 

@@ -32,5 +32,13 @@
     </form>
 
     <p style="white-space: pre-line" th:text="${'Page Contents: ' + user_page.textContents}"></p>
+
+    <br/>
+
+    <div th:if="${user_page_hasnext}">
+        <a th:href="@{/__${user_page.notebook.uuid}__/__${user_page_next.uuid}__}"> Next Page</a>
+    </div>
+
+
 </body>
 </html>
