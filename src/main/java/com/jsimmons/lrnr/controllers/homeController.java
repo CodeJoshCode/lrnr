@@ -17,11 +17,17 @@ import java.util.UUID;
 @Controller
 public class homeController {
 
-    @Autowired
-    NotebookService notebookService;
+    private final NotebookService notebookService;
+
+    private final PageService pageService;
+
 
     @Autowired
-    PageService pageService;
+    public homeController(NotebookService notebookService,
+                          PageService pageService) {
+        this.notebookService = notebookService;
+        this.pageService = pageService;
+    }
 
     Logger logger = LoggerFactory.getLogger(homeController.class);
 
@@ -84,6 +90,7 @@ public class homeController {
                                @PathVariable(value = "page_identifier") UUID pageIdentifier,
                                @RequestParam(name = "page_text_content") String page_contents,
                                Model model) {
+
         Page page = pageService.findByUuid(pageIdentifier);
         page.setTextContents(page.getTextContents() + page_contents);
         pageService.savePage(page);

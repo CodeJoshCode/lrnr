@@ -22,7 +22,13 @@
     <form method="post" >
         <textarea th:value="${user_page.textContents}" id="page_contents" type = "text" name="page_text_content" maxlength="8000">Enter text here...</textarea>
         <button type="submit">Submit</button>
+    </form>
 
+    <h3>upload a file<h3>
+    <form action="/action_page.php">
+        <label for="myfile">Select files:</label>
+        <input type="file" id="myfile" name="myfile" multiple><br><br>
+        <input type="submit">
     </form>
 
     <p style="white-space: pre-line" th:text="${'Page Contents: ' + user_page.textContents}"></p>
