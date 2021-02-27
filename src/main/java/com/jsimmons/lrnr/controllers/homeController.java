@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 
@@ -89,10 +91,18 @@ public class homeController {
     public String postUserPage(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
                                @PathVariable(value = "page_identifier") UUID pageIdentifier,
                                @RequestParam(name = "page_text_content") String page_contents,
-                               Model model) {
+                               @RequestParam(name = "myfile") MultipartFile page_file_contents,
+                               Model model) throws IOException {
 
         Page page = pageService.findByUuid(pageIdentifier);
         page.setTextContents(page.getTextContents() + page_contents);
+        page.setFileSize(page_file_contents.getSize());
+        page.setFileType(page_file_contents.getContentType());
+        try{
+            page.setDocument(page_file_contents.getBytes());
+        }catch(IOException e){
+            logger.error("File was unable to be read", e);
+        }
         pageService.savePage(page);
         model.addAttribute("user_page", page);
         return "user_page";

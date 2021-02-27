@@ -2,7 +2,7 @@
 *.class
 
 #build files
-target/classes/*
+target/*
 
 # Log file
 *.log
@@ -39,3 +39,7 @@ hs_err_pid*
 
 #.iml
 *.iml
+
+.factorypath
+.factorypath/*
+.settings/*

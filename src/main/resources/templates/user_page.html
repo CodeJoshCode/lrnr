@@ -25,7 +25,7 @@
     </form>
 
     <h3>upload a file<h3>
-    <form action="/action_page.php">
+    <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
         <label for="myfile">Select files:</label>
         <input type="file" id="myfile" name="myfile" multiple><br><br>
         <input type="submit">
