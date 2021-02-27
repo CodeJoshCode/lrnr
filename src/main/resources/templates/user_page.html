@@ -19,15 +19,15 @@
 
     <p>add notes below</p>
 
-    <form method="post" >
-        <textarea th:value="${user_page.textContents}" id="page_contents" type = "text" name="page_text_content" maxlength="8000">Enter text here...</textarea>
+    <form method="post" th:action="@{/__${user_page.notebook.uuid}__/__${user_page.uuid}__}" >
+        <textarea th:value="${user_page.textContents}" id="page_text_content" type = "text" name="page_text_content" maxlength="8000">Enter text here...</textarea>
         <button type="submit">Submit</button>
     </form>
 
     <h3>upload a file<h3>
-    <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
-        <label for="myfile">Select files:</label>
-        <input type="file" id="myfile" name="myfile" multiple><br><br>
+    <form method="post" th:action="@{/__${user_page.notebook.uuid}__/__${user_page.uuid}__/upload}" enctype="multipart/form-data">
+        <label for="uploaded_document">Select files:</label>
+        <input type="file" id="uploaded_document" name="uploaded_document" multiple><br><br>
         <input type="submit">
     </form>
 

@@ -87,20 +87,34 @@ public class homeController {
     }
 
 
+    //handle textcontent form
+
     @PostMapping("/{notebook_identifier}/{page_identifier}")
-    public String postUserPage(@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
+    public String postUserPageTextContents (@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
                                @PathVariable(value = "page_identifier") UUID pageIdentifier,
                                @RequestParam(name = "page_text_content") String page_contents,
-                               @RequestParam(name = "myfile") MultipartFile page_file_contents,
-                               Model model) throws IOException {
-
+                               Model model) {
         Page page = pageService.findByUuid(pageIdentifier);
         page.setTextContents(page.getTextContents() + page_contents);
-        page.setFileSize(page_file_contents.getSize());
-        page.setFileType(page_file_contents.getContentType());
-        try{
-            page.setDocument(page_file_contents.getBytes());
-        }catch(IOException e){
+        pageService.savePage(page);
+        logger.info("page textContents should have just saved to db");
+        model.addAttribute("user_page", page);
+        return "user_page";
+    }
+
+    //handle MultipartFile form
+
+    @PostMapping("/{notebook_identifier}/{page_identifier}/upload")
+    public String postUserPageMultipartFile (@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
+                                             @PathVariable(value = "page_identifier") UUID pageIdentifier,
+                                             @RequestParam(name = "uploaded_document") MultipartFile uploadedDocument,
+                                             Model model) {
+        Page page = pageService.findByUuid(pageIdentifier);
+        page.setFileSize(uploadedDocument.getSize());
+        page.setFileType(uploadedDocument.getContentType());
+        try {
+            page.setDocument(uploadedDocument.getBytes());
+        } catch (IOException e) {
             logger.error("File was unable to be read", e);
         }
         pageService.savePage(page);
