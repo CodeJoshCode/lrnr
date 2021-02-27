@@ -104,6 +104,7 @@ public class homeController {
 
     //handle MultipartFile form
 
+    //TODO : notify user when file successfully uploads
     @PostMapping("/{notebook_identifier}/{page_identifier}/upload")
     public String postUserPageMultipartFile (@PathVariable(value = "notebook_identifier") UUID notebookIdentifier,
                                              @PathVariable(value = "page_identifier") UUID pageIdentifier,
