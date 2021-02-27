@@ -6,15 +6,7 @@ import lombok.Setter;
 import java.util.Objects;
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import javax.validation.constraints.NotBlank;
 
@@ -61,6 +53,17 @@ public class Page {
 
     @Column(length = 8000)
     private String textContents;
+
+    //byte array is a common attack vector for overflow
+    @Column
+    @Lob
+    private byte[] document;
+
+    @Column
+    private String fileType;
+
+    @Column
+    private Long fileSize;
 
     /* Constructors
         textContents set to empty string bc most recent textContents is displayed in input form on UI side
