@@ -60,4 +60,10 @@ public class Notebook {
     public void addPage(Page p) {
         pages.add(p);
     }
+
+    public int getPageCount(){return pages.size();}
+
+    public Page getPageById(Long id){
+        return pages.get(Math.toIntExact(id));
+    }
 }

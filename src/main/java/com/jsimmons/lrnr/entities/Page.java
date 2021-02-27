@@ -3,7 +3,6 @@ package com.jsimmons.lrnr.entities;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 public class Page {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long pageNumber;
 
     @Column
     UUID uuid = UUID.randomUUID();
@@ -81,24 +80,20 @@ public class Page {
     }
 
     public Boolean hasNext() {
-        List<Page> pages = notebook.getPages();
-        return pages.size() > (pages.indexOf(this) + 1);
+        return pageNumber >= notebook.getPageCount();
     }
 
     public Page getNext() {
         if (this.hasNext()) {
-            System.out.println("fuckfuckfuck");
-            List<Page> pages = notebook.getPages();
-            return notebook.getPages().get((pages.indexOf(this) + 1));
+            return notebook.getPageById(this.pageNumber + 1);
         }
-        System.out.println("shitshithsit");
         return null;
     }
 
     @Override
     public String toString() {
         return "Page{" +
-                "id=" + id +
+                "id=" + pageNumber +
                 ", notebook=" + notebook +
                 ", name='" + name + '\'' +
                 '}';
@@ -109,11 +104,11 @@ public class Page {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Page page = (Page) o;
-        return Objects.equals(id, page.id) && Objects.equals(notebook, page.notebook) && Objects.equals(name, page.name);
+        return Objects.equals(pageNumber, page.pageNumber) && Objects.equals(notebook, page.notebook) && Objects.equals(name, page.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, notebook, name);
+        return Objects.hash(pageNumber, notebook, name);
     }
 }
