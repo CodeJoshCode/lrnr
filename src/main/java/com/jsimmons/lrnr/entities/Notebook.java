@@ -64,6 +64,6 @@ public class Notebook {
     public int getPageCount(){return pages.size();}
 
     public Page getPageById(Long id){
-        return pages.get(Math.toIntExact(id));
+        return pages.get(Math.toIntExact(id) - 1);
     }
 }

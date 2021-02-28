@@ -84,9 +84,13 @@ public class homeController {
         Page page =  pageService.findByUuid(pageIdentifier);
         model.addAttribute("user_page", page);
         model.addAttribute("user_page_hasnext", page.hasNext());
+        model.addAttribute("user_page_hasprevious", page.hasPrevious());
 
         if (page.hasNext()) {
             model.addAttribute("user_page_next", page.getNext());
+        }
+        if (page.hasPrevious()) {
+            model.addAttribute("user_page_previous", page.getPrevious());
         }
         return "user_page";
     }

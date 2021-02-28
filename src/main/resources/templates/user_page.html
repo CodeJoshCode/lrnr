@@ -24,7 +24,7 @@
         <button type="submit">Submit</button>
     </form>
 
-    <h3>upload a file<h3>
+    <h3>upload a file</h3>
     <form method="post" th:action="@{/__${user_page.notebook.uuid}__/__${user_page.uuid}__/upload}" enctype="multipart/form-data">
         <label for="uploaded_document">Select files:</label>
         <input type="file" id="uploaded_document" name="uploaded_document" multiple><br><br>
@@ -35,8 +35,14 @@
 
     <br/>
 
-    <div th:if="${user_page_hasnext}">
+    <div>
+        <span th:if="${user_page_hasprevious}">
+            <a th:href="@{/__${user_page.notebook.uuid}__/__${user_page_previous.uuid}__}"> Previous Page</a>
+        </span>
+
+        <span th:if="${user_page_hasnext}">
         <a th:href="@{/__${user_page.notebook.uuid}__/__${user_page_next.uuid}__}"> Next Page</a>
+        </span>
     </div>
 
 

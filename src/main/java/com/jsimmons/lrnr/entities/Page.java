@@ -80,12 +80,24 @@ public class Page {
     }
 
     public Boolean hasNext() {
-        return pageNumber >= notebook.getPageCount();
+        int pageCount = notebook.getPageCount();
+        return pageNumber < pageCount;
+    }
+
+    public Boolean hasPrevious() {
+        return !(this.pageNumber==1);
     }
 
     public Page getNext() {
         if (this.hasNext()) {
             return notebook.getPageById(this.pageNumber + 1);
+        }
+        return null;
+    }
+
+    public Page getPrevious(){
+        if(this.hasPrevious()){
+            return notebook.getPageById(this.pageNumber - 1);
         }
         return null;
     }
