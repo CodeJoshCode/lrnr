@@ -83,15 +83,9 @@ public class homeController {
                               Model model ) {
         Page page =  pageService.findByUuid(pageIdentifier);
         model.addAttribute("user_page", page);
-        model.addAttribute("user_page_hasnext", page.hasNext());
-        model.addAttribute("user_page_hasprevious", page.hasPrevious());
 
-        if (page.hasNext()) {
-            model.addAttribute("user_page_next", page.getNext());
-        }
-        if (page.hasPrevious()) {
-            model.addAttribute("user_page_previous", page.getPrevious());
-        }
+        preparePageModel(model, page);
+
         return "user_page";
     }
 
@@ -109,6 +103,8 @@ public class homeController {
         logger.info("page textContents should have just saved to db");
         model.addAttribute("user_page", page);
         logger.info(page.hasNext().toString());
+
+        preparePageModel(model, page);
 
         return "user_page";
     }
@@ -129,8 +125,11 @@ public class homeController {
         } catch (IOException e) {
             logger.error("File was unable to be read", e);
         }
+
         pageService.savePage(page);
         model.addAttribute("user_page", page);
+
+        preparePageModel(model, page);
         return "user_page";
     }
 
@@ -165,5 +164,20 @@ public class homeController {
         return "user_page";
     }
 
+
+
+    //Utilities
+    public static void preparePageModel(Model model, Page page) {
+
+        model.addAttribute("user_page_hasnext", page.hasNext());
+        model.addAttribute("user_page_hasprevious", page.hasPrevious());
+
+        if (page.hasNext()) {
+            model.addAttribute("user_page_next", page.getNext());
+        }
+        if (page.hasPrevious()) {
+            model.addAttribute("user_page_previous", page.getPrevious());
+        }
+    }
 
 }
