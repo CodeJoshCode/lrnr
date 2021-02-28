@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.UUID;
 
 
@@ -177,6 +178,13 @@ public class homeController {
         }
         if (page.hasPrevious()) {
             model.addAttribute("user_page_previous", page.getPrevious());
+        }
+        // display image if there is one
+        byte[] document = page.getDocument();
+        if (document != null){
+            model.addAttribute("user_page_has_image", true);
+            String img_source = "data:" + page.getFileType() + ";base64, " + Base64.getEncoder().encodeToString(page.getDocument());
+            model.addAttribute("user_page_image_src", img_source);
         }
     }
 

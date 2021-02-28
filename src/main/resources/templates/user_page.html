@@ -27,9 +27,13 @@
     <h3>upload a file</h3>
     <form method="post" th:action="@{/__${user_page.notebook.uuid}__/__${user_page.uuid}__/upload}" enctype="multipart/form-data">
         <label for="uploaded_document">Select files:</label>
-        <input type="file" id="uploaded_document" name="uploaded_document" multiple><br><br>
+        <input type="file" id="uploaded_document" name="uploaded_document" multiple accept="image/*"><br><br>
         <input type="submit">
     </form>
+
+    <span th:if="${user_page_has_image}">
+        <img th:src="${user_page_image_src}"  width="500" height="500"/>
+    </span>
 
     <p style="white-space: pre-line" th:text="${'Page Contents: ' + user_page.textContents}"></p>
 

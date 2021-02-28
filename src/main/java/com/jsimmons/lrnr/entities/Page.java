@@ -54,7 +54,7 @@ public class Page {
     @Column(length = 8000)
     private String textContents;
 
-    //byte array is a common attack vector for overflow
+    //  byte array is a common attack vector for overflow
     @Column
     @Lob
     private byte[] document;
