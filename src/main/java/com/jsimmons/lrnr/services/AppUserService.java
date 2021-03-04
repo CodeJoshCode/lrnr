@@ -40,6 +40,7 @@ public class AppUserService implements UserDetailsService {
                 .isPresent();
 
         if (userExists) {
+            //TODO : if user exists but not confirmed re send email
             throw  new IllegalStateException("email already taken");
         }
 
@@ -60,6 +61,12 @@ public class AppUserService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(
                 confirmationToken);
 
+        //TODO : send email
+
         return token;
+    }
+
+    public int enableAppUser(String email) {
+        return appUserRepository.enableAppUser(email);
     }
 }

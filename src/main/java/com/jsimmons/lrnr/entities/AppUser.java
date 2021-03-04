@@ -25,7 +25,7 @@ public class AppUser implements UserDetails {
     @SequenceGenerator(
             name = "student_sequence",
             sequenceName = "student_sequence",
-            allocationSize = 1
+            allocationSize = 2
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
