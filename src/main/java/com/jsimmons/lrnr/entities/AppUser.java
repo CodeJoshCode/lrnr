@@ -70,6 +70,7 @@ public class AppUser implements UserDetails {
         return password;
     }
 
+
     @Override
     public String getUsername() {
         return email;

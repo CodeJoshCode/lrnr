@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -34,21 +35,26 @@ public class AppUserService implements UserDetailsService {
     }
 
     public String signUpUser(AppUser appUser) {
-
         boolean userExists = appUserRepository
                 .findByEmail(appUser.getEmail())
                 .isPresent();
+        if ( userExists ) {
+           if ( appUserRepository.findByEmail(appUser.getEmail()).get().isEnabled()) {
+               throw new IllegalStateException("email already taken");
+           }
+           //user exists but not enabled below
+           else {
 
-        if (userExists) {
-            //TODO : if user exists but not confirmed re send email
-            throw  new IllegalStateException("email already taken");
+           }
+
+        } else {
+
+            String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
+
+            appUser.setPassword(encodedPassword);
+
+            appUserRepository.save(appUser);
         }
-
-        String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
-
-        appUser.setPassword(encodedPassword);
-
-        appUserRepository.save(appUser);
 
         String token = UUID.randomUUID().toString();
         ConfirmationToken confirmationToken = new ConfirmationToken(
@@ -69,4 +75,27 @@ public class AppUserService implements UserDetailsService {
     public int enableAppUser(String email) {
         return appUserRepository.enableAppUser(email);
     }
+
+    public boolean appUserExistsAndEnabled(String email) {
+        boolean userExists =  appUserExists(email);
+
+        if ( userExists) {
+            if ( appUserRepository.findByEmail(email).get().isEnabled()) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean appUserExists(String email) {
+        return appUserRepository
+                .findByEmail(email)
+                .isPresent();
+    }
+
+    public Optional<AppUser> findByEmail(String email) {
+        return appUserRepository.findByEmail(email);
+    }
+
 }

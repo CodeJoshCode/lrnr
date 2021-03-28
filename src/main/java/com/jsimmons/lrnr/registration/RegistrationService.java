@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,20 +25,34 @@ public class RegistrationService {
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
+        AppUser user;
+        String token;
 
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
-        String token = appUserService.signUpUser(
-                new AppUser(
-                        request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        AppUserRole.USER
 
-                )
-        );
+        //check if appuser exists ? how do?
+
+        //below looks wrong becuase if a user already exists, ie made a token already (but possibly not confirmed email)
+        // then that user is already persisted and we are trying to save over it. does that work?
+        if (appUserService.appUserExistsAndEnabled(request.getEmail())) {
+            throw new IllegalArgumentException("email already taken");
+            //check if exists but not enabled
+        } else if (appUserService.appUserExists(request.getEmail())) {
+            user = appUserService.findByEmail(request.getEmail()).get();
+        } else {
+            user =  new AppUser(
+                    request.getFirstName(),
+                    request.getLastName(),
+                    request.getEmail(),
+                    request.getPassword(),
+                    AppUserRole.USER
+            );
+        }
+
+        token = appUserService.signUpUser(user);
+
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(request.getEmail(), buildEmail(request.getFirstName(), link));
         return token;

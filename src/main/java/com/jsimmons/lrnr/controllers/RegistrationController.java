@@ -1,5 +1,7 @@
-package com.jsimmons.lrnr.registration;
+package com.jsimmons.lrnr.controllers;
 
+import com.jsimmons.lrnr.registration.RegistrationRequest;
+import com.jsimmons.lrnr.registration.RegistrationService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.web.bind.annotation.*;
