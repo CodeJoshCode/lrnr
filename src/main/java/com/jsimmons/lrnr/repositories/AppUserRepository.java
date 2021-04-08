@@ -24,14 +24,14 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
     When using jpa outside of a dependency injection container i.e. springs ioc container, transactions need to be handled
     programmatically by the developer.
 
-    it looks like @Transactional abstracts having to create a db connection, carrying out a single db transaction,
-    and then finally closing that connection.
+    @Transactional abstracts a db transaction (follows ACID principles, blocks changes to the data being operated on during the transaction,
+    and ensures either all operations execute (commit) or the state of db will remain the same as before the transaction (rollback)
 
      */
 
     //TODO : this probably belongs in the service layer... see:  https://stackoverflow.com/questions/1079114/where-does-the-transactional-annotation-belong
 
-    // this query uses a "prepared statement" (maybe?),  (separates query logic from data) safer against sql injection
+    // query uses jpql - ?1 will correspond to first argument, if ?2 was there it would correspond to second method arg, and so on
     @Transactional
     @Modifying
     @Query("UPDATE AppUser a " +
