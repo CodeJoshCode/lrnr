@@ -24,12 +24,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**"//, "/**"
+                    .antMatchers("/registration/**", "/login/**", "/signup/**"//, "/**"
                               )
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login");
         //allows h2 access w/ security enabled
         http.headers().frameOptions().disable();
     }

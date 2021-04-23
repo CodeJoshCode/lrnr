@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(path = "api/v1/registration")
+@RequestMapping(path = "/registration")
 public class RegistrationController {
 
     Logger logger = LoggerFactory.getLogger(RegistrationController.class);

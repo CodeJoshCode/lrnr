@@ -8,16 +8,21 @@
     <title>Sign Up for Lrnr</title>
 </head>
 <body>
-<form method="post" action="/api/v1/registration">
+<h1>Create a Lrnr Account</h1>
+<form method="post" action="/registration">
     <label for="firstName">first name:</label>
     <input type="text" name="firstName" id="firstName"></input>
+    <br/>
     <label for="lastName">last name:</label>
     <input type="text" name="lastName" id="lastName"></input>
+    <br/>
     <label for="email">email:</label>
     <input type="text" name="email" id="email" required></input>
+    <br/>
     <label for="password">password:</label>
     <input type="text" name="password" id="password" required></input>
     <button type="submit">Submit</button>
+    <br/>
 </form>
 </body>
 </html>
