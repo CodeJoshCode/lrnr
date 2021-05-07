@@ -1,10 +1,10 @@
 spring:
 
   mail:
-    host: localhost
-    port: 1025
-    username: hello
-    password: hello
+    host: email-smtp.us-east-2.amazonaws.com
+    port: 587
+    username: ${SES}
+    password: ${SES_PW}
 
     properties:
       mail:
